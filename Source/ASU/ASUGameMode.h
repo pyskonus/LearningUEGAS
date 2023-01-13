@@ -10,9 +10,7 @@ UCLASS(minimalapi)
 class AASUGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-
-public:
-	AASUGameMode();
+	
 };
 
 
