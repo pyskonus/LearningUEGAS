@@ -47,7 +47,7 @@ void AASUCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInput
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ThisClass::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AASUCharacter::MoveForward);
@@ -103,4 +103,17 @@ void AASUCharacter::MoveRight(float Value)
 	}
 }
 
+void AASUCharacter::Jump()
+{
+	Super::Jump();
+
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+}
+
+void AASUCharacter::Landed(const FHitResult& Hit)
+{
+	Super::Landed(Hit);
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+}
 

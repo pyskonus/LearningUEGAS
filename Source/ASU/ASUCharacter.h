@@ -21,6 +21,9 @@ class AASUCharacter : public ACharacter
 public:
 	AASUCharacter();
 
+	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
 protected:
 	
 	void MoveForward(float Value);
@@ -33,9 +36,9 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	// End of APawn interface
-
-public:
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	
+	virtual void Jump() override;
+	virtual void Landed(const FHitResult& Hit) override;
+	
 };
 
